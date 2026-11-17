@@ -1,0 +1,189 @@
+/* ==========================================================================
+   TripMate - Modern Travel Theme Stylesheet
+   Color Palette:
+   - Primary Navy: #0f172a / #1e293b
+   - Accent Violet: #6366f1 / #4f46e5
+   - Sky Blue: #0ea5e9
+   - Background Light: #f8fafc
+   - Card Background: #ffffff
+   ========================================================================== */
+
+:root {
+    --tm-primary: #0f172a;
+    --tm-secondary: #1e293b;
+    --tm-accent: #6366f1;
+    --tm-accent-hover: #4f46e5;
+    --tm-cyan: #0ea5e9;
+    --tm-bg: #f8fafc;
+    --tm-card-bg: #ffffff;
+    --tm-text-main: #1e293b;
+    --tm-text-muted: #64748b;
+    --tm-border: #e2e8f0;
+    --tm-radius: 14px;
+    --tm-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.06), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+    --tm-shadow-hover: 0 20px 30px -10px rgba(99, 102, 241, 0.18);
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: var(--tm-bg);
+    color: var(--tm-text-main);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Buttons */
+.btn-tm-primary {
+    background: linear-gradient(135deg, var(--tm-accent) 0%, #4338ca 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    padding: 0.65rem 1.4rem;
+    font-weight: 600;
+    transition: all 0.25s ease;
+}
+.btn-tm-primary:hover {
+    background: linear-gradient(135deg, var(--tm-accent-hover) 0%, #3730a3 100%);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.35);
+}
+
+.btn-tm-outline {
+    border: 2px solid var(--tm-accent);
+    color: var(--tm-accent);
+    border-radius: 10px;
+    padding: 0.6rem 1.3rem;
+    font-weight: 600;
+    transition: all 0.25s ease;
+}
+.btn-tm-outline:hover {
+    background-color: var(--tm-accent);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(99, 102, 241, 0.25);
+}
+
+/* Modern Card Styling */
+.tm-card {
+    background-color: var(--tm-card-bg);
+    border: 1px solid var(--tm-border);
+    border-radius: var(--tm-radius);
+    box-shadow: var(--tm-shadow);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    overflow: hidden;
+}
+.tm-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--tm-shadow-hover);
+    border-color: #c7d2fe;
+}
+
+/* Navigation Bar */
+.tm-navbar {
+    background-color: #ffffff;
+    border-bottom: 1px solid var(--tm-border);
+    padding: 0.8rem 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+.tm-brand {
+    font-weight: 800;
+    font-size: 1.4rem;
+    letter-spacing: -0.5px;
+    color: var(--tm-primary);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.tm-brand i {
+    color: var(--tm-accent);
+    font-size: 1.6rem;
+}
+
+/* Auth Cards */
+.auth-wrapper {
+    min-height: calc(100vh - 150px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5rem 1rem;
+}
+.auth-card {
+    max-width: 480px;
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid var(--tm-border);
+    border-radius: 18px;
+    box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.1);
+    padding: 2.5rem;
+}
+.auth-card .form-control {
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    border: 1px solid #cbd5e1;
+}
+.auth-card .form-control:focus {
+    border-color: var(--tm-accent);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+/* Stat Widgets */
+.stat-widget {
+    background: #ffffff;
+    border: 1px solid var(--tm-border);
+    border-radius: var(--tm-radius);
+    padding: 1.4rem;
+    box-shadow: var(--tm-shadow);
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+}
+.stat-icon {
+    width: 54px;
+    height: 54px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+/* Badges */
+.badge-soft-primary { background-color: #e0e7ff; color: #4338ca; }
+.badge-soft-success { background-color: #dcfce7; color: #15803d; }
+.badge-soft-warning { background-color: #fef3c7; color: #b45309; }
+.badge-soft-info    { background-color: #e0f2fe; color: #0369a1; }
+.badge-soft-danger  { background-color: #fee2e2; color: #b91c1c; }
+
+/* Footer */
+.tm-footer {
+    background-color: var(--tm-primary);
+    color: #94a3b8;
+    margin-top: auto;
+    padding: 2.5rem 0 1.5rem;
+}
+.tm-footer a {
+    color: #cbd5e1;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.tm-footer a:hover {
+    color: #ffffff;
+}

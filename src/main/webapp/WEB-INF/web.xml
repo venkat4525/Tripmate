@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+                             https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
+
+    <display-name>TripMate - Smart Travel Planning &amp; Trip Management System</display-name>
+
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+    <!-- ======================================================== -->
+    <!-- FILTERS                                                  -->
+    <!-- ======================================================== -->
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>com.tripmate.controller.AuthFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!-- ======================================================== -->
+    <!-- SERVLET DECLARATIONS & MAPPINGS                          -->
+    <!-- ======================================================== -->
+
+    <!-- 1. Home / Landing (Handles root /, /home, and /index.jsp) -->
+    <servlet>
+        <servlet-name>HomeServlet</servlet-name>
+        <servlet-class>com.tripmate.controller.HomeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HomeServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HomeServlet</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HomeServlet</servlet-name>
+        <url-pattern>/index.jsp</url-pattern>
+    </servlet-mapping>
+
+    <!-- 2. Authentication -->
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.tripmate.controller.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>com.tripmate.controller.RegisterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>com.tripmate.controller.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+
+    <!-- 3. Dashboard -->
+    <servlet>
+        <servlet-name>DashboardServlet</servlet-name>
+        <servlet-class>com.tripmate.controller.DashboardServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DashboardServlet</servlet-name>
+        <url-pattern>/dashboard</url-pattern>
+    </servlet-mapping>
+
+    <!-- 4. Destinations & Favourites -->
+    <servlet>
+        <servlet-name>DestinationServlet</servlet-name>
+        <servlet-class>com.tripmate.controller.DestinationServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DestinationServlet</servlet-name>
+        <url-pattern>/destinations</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DestinationServlet</servlet-name>
+        <url-pattern>/destination-details</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DestinationServlet</servlet-name>
+        <url-pattern>/favourites</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DestinationServlet</servlet-name>
+        <url-pattern>/toggle-favourite</url-pattern>
+    </servlet-mapping>
+
+    <!-- 5. Trips Management -->
+    <servlet>
+        <servlet-name>TripServlet</servlet-name>
+        <servlet-class>com.tripmate.controller.TripServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TripServlet</servlet-name>
+        <url-pattern>/trips</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TripServlet</servlet-name>
+        <url-pattern>/trip-create</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TripServlet</servlet-name>
+        <url-pattern>/trip-details</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TripServlet</servlet-name>
+        <url-pattern>/trip-edit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TripServlet</servlet-name>
+        <url-pattern>/trip-delete</url-pattern>
+    </servlet-mapping>
+
+    <!-- 6. Itinerary -->
+    <servlet>
+        <servlet-name>ItineraryServlet</servlet-name>
+        <servlet-class>com.tripmate.controller.ItineraryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ItineraryServlet</servlet-name>
+        <url-pattern>/itinerary-add</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ItineraryServlet</servlet-name>
+        <url-pattern>/itinerary-toggle</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ItineraryServlet</servlet-name>
+        <url-pattern>/itinerary-delete</url-pattern>
+    </servlet-mapping>
+
+    <!-- 7. Expenses -->
+    <servlet>
+        <servlet-name>ExpenseServlet</servlet-name>
+        <servlet-class>com.tripmate.controller.ExpenseServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ExpenseServlet</servlet-name>
+        <url-pattern>/expense-add</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ExpenseServlet</servlet-name>
+        <url-pattern>/expense-delete</url-pattern>
+    </servlet-mapping>
+
+    <!-- 8. Checklist -->
+    <servlet>
+        <servlet-name>ChecklistServlet</servlet-name>
+        <servlet-class>com.tripmate.controller.ChecklistServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChecklistServlet</servlet-name>
+        <url-pattern>/checklist-add</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChecklistServlet</servlet-name>
+        <url-pattern>/checklist-toggle</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChecklistServlet</servlet-name>
+        <url-pattern>/checklist-delete</url-pattern>
+    </servlet-mapping>
+
+    <!-- 9. Members & Collaboration -->
+    <servlet>
+        <servlet-name>TripMemberServlet</servlet-name>
+        <servlet-class>com.tripmate.controller.TripMemberServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TripMemberServlet</servlet-name>
+        <url-pattern>/trip-invite</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TripMemberServlet</servlet-name>
+        <url-pattern>/trip-remove-member</url-pattern>
+    </servlet-mapping>
+
+    <!-- 10. Summary & Print -->
+    <servlet>
+        <servlet-name>TripSummaryServlet</servlet-name>
+        <servlet-class>com.tripmate.controller.TripSummaryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TripSummaryServlet</servlet-name>
+        <url-pattern>/trip-summary</url-pattern>
+    </servlet-mapping>
+
+    <!-- 11. Administrator Operations -->
+    <servlet>
+        <servlet-name>AdminServlet</servlet-name>
+        <servlet-class>com.tripmate.controller.AdminServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminServlet</servlet-name>
+        <url-pattern>/admin/dashboard</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminServlet</servlet-name>
+        <url-pattern>/admin/users</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminServlet</servlet-name>
+        <url-pattern>/admin/user-toggle</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminServlet</servlet-name>
+        <url-pattern>/admin/destinations</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminServlet</servlet-name>
+        <url-pattern>/admin/destination-delete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminServlet</servlet-name>
+        <url-pattern>/admin/categories</url-pattern>
+    </servlet-mapping>
+
+    <!-- Default servlet mapping for static assets -->
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>/assets/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- Session Configuration -->
+    <session-config>
+        <session-timeout>30</session-timeout>
+        <cookie-config>
+            <http-only>true</http-only>
+            <secure>false</secure>
+        </cookie-config>
+        <tracking-mode>COOKIE</tracking-mode>
+    </session-config>
+
+</web-app>
