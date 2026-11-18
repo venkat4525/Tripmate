@@ -13,12 +13,14 @@ import org.bson.types.ObjectId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Data Access Object for MongoDB 'destinations' collection.
  */
 public class DestinationDAO {
 
+    private static final Logger LOGGER = Logger.getLogger(DestinationDAO.class.getName());
     private final MongoCollection<Document> collection;
 
     public DestinationDAO() {
@@ -131,11 +133,19 @@ public class DestinationDAO {
     public List<Destination> findTopRated(int limit) {
         List<Destination> list = new ArrayList<>();
         try {
+            LOGGER.info("[DestinationDAO] findTopRated called with limit=" + limit);
+            long total = collection.countDocuments();
+            LOGGER.info("[DestinationDAO] Total destinations in DB: " + total);
             for (Document doc : collection.find().sort(Sorts.descending("rating")).limit(limit)) {
                 Destination d = mapDocumentToDestination(doc);
-                if (d != null) list.add(d);
+                if (d != null) {
+                    list.add(d);
+                    LOGGER.info("[DestinationDAO] Loaded: " + d.getName());
+                }
             }
+            LOGGER.info("[DestinationDAO] findTopRated returning " + list.size() + " items");
         } catch (Exception e) {
+            LOGGER.severe("[DestinationDAO] findTopRated FAILED: " + e.getMessage());
             e.printStackTrace();
         }
         return list;
@@ -199,9 +209,20 @@ public class DestinationDAO {
         d.setHighlights(doc.getString("highlights"));
         d.setDuration(doc.getString("duration"));
         d.setBestSeason(doc.getString("bestSeason"));
-        d.setAverageCost(doc.getDouble("averageCost") != null ? doc.getDouble("averageCost") : 0.0);
+        // averageCost / rating may be stored as Integer or Double in MongoDB
+        Object costObj = doc.get("averageCost");
+        if (costObj instanceof Number) {
+            d.setAverageCost(((Number) costObj).doubleValue());
+        } else {
+            d.setAverageCost(0.0);
+        }
         d.setImageUrl(doc.getString("imageUrl"));
-        d.setRating(doc.getDouble("rating") != null ? doc.getDouble("rating") : 5.0);
+        Object ratingObj = doc.get("rating");
+        if (ratingObj instanceof Number) {
+            d.setRating(((Number) ratingObj).doubleValue());
+        } else {
+            d.setRating(5.0);
+        }
         List<String> tags = (List<String>) doc.get("tags");
         if (tags != null) {
             d.setTags(tags);
